@@ -60,6 +60,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
         if (dish != null)
           {
             return(
+              <div className="container">
               <div className="row">
               <div  className="col-12 col-md-5 m-1">
                 <Card>
@@ -73,6 +74,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
                 <div  className="col-12 col-md-5 m-1">
                   <h4>Comments</h4>
                   <p>{this.renderComments(dish.comments)}</p>
+                </div>
                 </div>
                 </div>
             );
