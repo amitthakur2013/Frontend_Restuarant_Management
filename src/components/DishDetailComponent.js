@@ -2,11 +2,8 @@ import React,{ Component } from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     CardTitle } from 'reactstrap';
 
- class DishDetail extends Component{
-  constructor(props){
-    super(props);
-  }
-  render_date(s){
+
+  function render_date(s){
     var a=s.substring(5,7);
     var b="";
     if(a=="01")
@@ -37,7 +34,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
     return b;
 
   }
-  renderComments(dish_com){
+  function renderComments(dish_com){
     
       const cmt=dish_com.map((cmnt) =>{
       return(
@@ -45,7 +42,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
           
           <li key={cmnt.id}>
           <p>{cmnt.comment}</p>
-          <p>-- {cmnt.author}, {this.render_date(cmnt.date.substring(0,10))}</p>
+          <p>-- {cmnt.author}, {render_date(cmnt.date.substring(0,10))}</p>
           </li>
           
         </div>
@@ -55,7 +52,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
       return(<ul className="list-unstyled">{cmt}</ul>);
   }
 
-  renderDish(dish) {
+  function renderDish(dish) {
 
         if (dish != null)
           {
@@ -73,7 +70,7 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
                 </div>
                 <div  className="col-12 col-md-5 m-1">
                   <h4>Comments</h4>
-                  <p>{this.renderComments(dish.comments)}</p>
+                  <p>{renderComments(dish.comments)}</p>
                 </div>
                 </div>
                 </div>
@@ -86,16 +83,13 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody,
             );
         }
     }
-    render(){
-      const dish=this.props.selectedDish;
+    
+    const DishDetail=(props) => {  
+      const dish=props.selectedDish;
       return(
-        this.renderDish(dish)
+        renderDish(dish)
         );
-    }
-
-
- }
-
-
+      }
+    
 
  export default DishDetail;
