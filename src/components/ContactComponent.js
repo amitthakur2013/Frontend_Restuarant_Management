@@ -11,8 +11,7 @@ const minLength=(len) => (val) => (val) && (val.length >= len);
 
 const isNumber = (val) => !isNaN(Number(val));
 
-var re = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
-const validEmail = (val) => re.test(val);
+const validEmail = val => /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(val);
 
 class  Contact extends Component {
 
@@ -22,12 +21,20 @@ class  Contact extends Component {
         this.handleSubmit=this.handleSubmit.bind(this);
 
     }
-    handleSubmit(values) {
-        alert("current state is : "+JSON.stringify(values));
-        this.props.resetFeedbackForm();
-    }
 
-   
+    handleSubmit(values) {
+    this.props.resetFeedbackForm();
+    this.props.postFeedback(
+      values.firstname,
+      values.lastname,
+      values.telnum,
+      values.email,
+      values.agree,
+      values.contactType,
+      values.message
+    );
+  }
+
 
     render(){
 

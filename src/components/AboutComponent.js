@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import { baseUrl } from "../shared/baseUrl";
 import { Loading } from "./LoadingComponent";
-//import { Fade, Stagger } from "react-animation-components";
+import { Fade, Stagger } from "react-animation-components";
 
 function About(props) {
   function RenderLeader({ leader }) {
@@ -35,13 +35,13 @@ function About(props) {
       return <h4>{errMess}</h4>;
     } else
       return (
-
-          props.leaders.map(leader => (
-            
+        <Stagger in>
+          {props.leaders.map(leader => (
+            <Fade in key={leader.id}>
               <RenderLeader key={leader.id} leader={leader} />
-            
-          ))
-        
+            </Fade>
+          ))}
+        </Stagger>
       );
   }
 
