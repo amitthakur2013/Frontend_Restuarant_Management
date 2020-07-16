@@ -23,7 +23,7 @@ import {baseUrl} from '../shared/baseUrl';
 
        handleSubmit(values){
           this.toggleModal();
-          this.props.addComment(this.props.dishId, values.rating,values.yourname,values.comment)
+          this.props.postComment(this.props.dishId, values.rating,values.author,values.comment)
        }
 
         toggleModal() {
@@ -60,10 +60,10 @@ import {baseUrl} from '../shared/baseUrl';
                           </Row>
                           <Row className="form-group">
                             <Col>
-                              <Label htmlFor="yourname">Your Name</Label>
-                              <Control.text model=".yourname" 
-                              name="yourname" 
-                              id="yourname" 
+                              <Label htmlFor="author">Your Name</Label>
+                              <Control.text model=".author" 
+                              name="author" 
+                              id="author" 
                               className="form-control"
                               validators={{
                                 required,minLength:minLength(2),maxLength:maxLength(15)
@@ -76,7 +76,7 @@ import {baseUrl} from '../shared/baseUrl';
                           </Row>
                           <Errors
                               className="text-danger"
-                              model=".yourname"
+                              model=".author"
                               show="touched"
                               messages={{
                                 required: 'Required ',
@@ -133,7 +133,7 @@ import {baseUrl} from '../shared/baseUrl';
         }
     }
 
-    function RenderComments({comments,addComment,dishId}) {
+    function RenderComments({comments,postComment,dishId}) {
         if( comments != null ) {
             return(
                 <div>
@@ -147,7 +147,7 @@ import {baseUrl} from '../shared/baseUrl';
                         )
                         })}
                     </ul>
-                    <CommentForm dishId={dishId} addComment={addComment}/>
+                    <CommentForm dishId={dishId} postComment={postComment}/>
                 </div>
             )
         }
@@ -198,7 +198,7 @@ import {baseUrl} from '../shared/baseUrl';
                     <div className="col-12 col-md-5 m-1">
                         <h4>Comments</h4>
                         <RenderComments comments={props.comments} 
-                        addComment={props.addComment}
+                        postComment={props.postComment}
                         dishId={props.dish.id}
                         />
                     </div>
